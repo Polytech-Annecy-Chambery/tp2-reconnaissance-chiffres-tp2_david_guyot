@@ -101,7 +101,12 @@ class Image:
     # Methode de redimensionnement d'image
     #==============================================================================
     def resize(self, new_H, new_W):
-        pass
+        im_r=Image()
+        im_r.set_pixels(np.zeros((self.H,self.W) , dtype=np.uint8))
+        im_r.pixels=resize(self.pixels, (new_H, new_W),0)
+        np.uint8(im_r.pixels*255)
+        return im_r
+
 
 
     #==============================================================================
