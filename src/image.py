@@ -104,6 +104,8 @@ class Image:
         im_r=Image()
         im_r.set_pixels(np.zeros((self.H,self.W) , dtype=np.uint8))
         im_r.pixels=resize(self.pixels, (new_H, new_W),0)
+        im_r.H=new_H
+        im_r.W=new_W
         np.uint8(im_r.pixels*255)
         return im_r
 
@@ -113,5 +115,10 @@ class Image:
     # Methode de mesure de similitude entre l'image self et un modele im
     #==============================================================================
     def similitude(self, im):
-        pass
+        nb=0
+        for i in range(self.H):
+            for j in range(self.W):
+                if self.pixels[i][j]==im.pixels[i][j]:
+                    nb+=1
+        return (nb/(self.H*self.W))
 
